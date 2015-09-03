@@ -1,0 +1,15 @@
+{
+    "id": "gitlab", 
+    "container": {
+      "docker": {
+        "image": "gitlab/gitlab-ce:latest",
+        "network": "BRIDGE",
+        "portMappings": [
+          {"containerPort": 8082, "servicePort": 8082}
+        ]
+      }
+    },
+    "cpus": 0.4,
+    "mem": 1024.0,
+    "instances": 1
+}

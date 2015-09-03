@@ -1,0 +1,15 @@
+{
+    "id": "sonar", 
+    "container": {
+      "docker": {
+        "image": "sonarqube:latest",
+        "network": "BRIDGE",
+        "portMappings": [
+          {"containerPort": 9000, "servicePort": 9000}
+        ]
+      }
+    },
+    "cpus": 0.2,
+    "mem": 512.0,
+    "instances": 1
+}
