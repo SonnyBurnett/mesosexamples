@@ -46,7 +46,7 @@ echo "*                                                                    *"
 echo "**********************************************************************" 
 echo
 
-echo "2" > /etc/mesos-master/quorum
+echo "1" > /etc/mesos-master/quorum
 echo "192.168.33.42" | tee /etc/mesos-master/ip
 cp /etc/mesos-master/ip /etc/mesos-master/hostname
 
@@ -59,10 +59,9 @@ echo "**********************************************************************"
 echo
 
 mkdir -p /etc/marathon/conf
-cp /etc/mesos-master/hostname /etc/marathon/conf
-cp /etc/mesos/zk /etc/marathon/conf/master
-cp /etc/marathon/conf/master /etc/marathon/conf/zk
-sed -i 's/mesos/marathon/g' /etc/marathon/conf/zk
+echo "192.168.33.42" > /etc/marathon/conf/hostname
+echo "zk://192.168.33.42:2181/mesos" > /etc/marathon/conf/master
+echo "zk://192.168.33.42:2181/marathon" > /etc/marathon/conf/zk
 
 echo   
 echo "**********************************************************************"
@@ -72,12 +71,56 @@ echo "*                                                                    *"
 echo "**********************************************************************" 
 echo
 
-stop mesos-slave
-echo manual | tee /etc/init/mesos-slave.override
+# stop mesos-slave
+# echo manual | tee /etc/init/mesos-slave.override
 
-# restart zookeeper
-# start mesos-master
-# start marathon
+restart zookeeper
+start mesos-master
+start marathon
+
+echo   
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Set IP address and hostname                                        *"  
+echo "*                                                                    *"  
+echo "**********************************************************************" 
+echo
+
+echo "192.168.33.42" | tee /etc/mesos-slave/ip
+cp /etc/mesos-slave/ip /etc/mesos-slave/hostname
+
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
+echo '5mins' > /etc/mesos-slave/executor_registration_timeout
+
+echo   
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Start mesos-slave                                                  *"  
+echo "*                                                                    *"  
+echo "**********************************************************************" 
+echo
+
+start mesos-slave
+
+echo   
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Install & configure docker                                         *"  
+echo "*                                                                    *"  
+echo "**********************************************************************" 
+echo
+
+apt-get install -y linux-image-generic-lts-trusty
+apt-get install -y curl
+curl -sSL https://get.docker.com/ | sh
+usermod -aG docker ubuntu
+docker -v
+apt-get install -y python-pip
+pip install -U docker-compose
+docker-compose --version
+docker-compose --version
+
+docker pull jenkins
 
 ifconfig
 exit 0
