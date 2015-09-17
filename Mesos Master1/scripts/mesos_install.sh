@@ -6,26 +6,16 @@
 # Purpose:	   Provision a VM with Mesos, Marathon, Zookeeper (Mesosphere) and Docker.
 #              To demonstrate how to run Docker containers on a High Available Mesos Cluster.
 #
-# Description: This script sets all the variables
+# Description: This script is used in combination with Vagrant.
+#              First step is to install Mesosphere, 
+#              which includes Mesos (Master & Slave), Mesos Frameworks (Marathon & Chronos)
+#              and Zookeeper for High Availability of Distributed systems
+#              Second step is to configure Zookeeper, Mesos (Master) and Marathon.
+#              So they can find each other and run as one cluster.
+#              Third is the configuration of the Mesos Slave.
+#              And finally Docker is installed
 #
 
-#
-# Define main variables
-#
-
-#IP_THIS_VM="192.168.33.41"
-#IP_2ND_MSTR="192.168.33.42"
-#HOSTNAME_THIS_VM="192.168.33.41"
-#ID_THIS_VM="1"
-#ID_2ND_MSTR="2"
-#QUORUM_ZK="1"
-
-IP_THIS_VM=$1
-IP_2ND_MSTR=$2
-HOSTNAME_THIS_VM=$3
-ID_THIS_VM=$4
-ID_2ND_MSTR=$5
-QUORUM_ZK=$6
 
 echo   
 echo "**********************************************************************"
@@ -195,9 +185,7 @@ docker-compose --version
 # to demonstrate how it all works.
 #
 
-docker pull jenkins:latest
+docker pull jenkins
 # /vagrant/scripts/startmesos.sh jenkins
 
 ifconfig
-
-exit 0
