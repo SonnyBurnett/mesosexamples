@@ -1,0 +1,15 @@
+{
+    "id": "hello", 
+    "container": {
+      "docker": {
+        "image": "tutum/hello-world",
+        "network": "BRIDGE",
+        "portMappings": [
+          {"containerPort": 8082, "servicePort": 8082}
+        ]
+      }
+    },
+    "cpus": 0.1,
+    "mem": 128.0,
+    "instances": 1
+}

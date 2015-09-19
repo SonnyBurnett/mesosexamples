@@ -1,0 +1,15 @@
+{
+    "id": "artifactory", 
+    "container": {
+      "docker": {
+        "image": "arnos/artifactory",
+        "network": "BRIDGE",
+        "portMappings": [
+          {"containerPort": 8081, "servicePort": 8081}
+        ]
+      }
+    },
+    "cpus": 0.2,
+    "mem": 512.0,
+    "instances": 1
+}
