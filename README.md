@@ -78,3 +78,5 @@ This will give you an url with the right port to access Jenkins.
 Copy this in another tab in your browser and you should see the jenkins gui
 
 Pretty cool he?
+
+Now try a more advanced example with 3 masters and 3 slaves.
