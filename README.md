@@ -11,6 +11,19 @@ PuTTY: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
 Virtual Box: https://www.virtualbox.org/wiki/Testbuilds
 
+*********************************************************************
+
+Try it the easy way:
+
+Take the files in directory "stdbox". This examples uses vagrant boxes with Mesos pre-installed.
+
+Change the vagrantfile to your personal liking (ip address, memory) and "vagrant up"
+
+*********************************************************************
+
+More extensive explanation:
+
+
 To try a simple example with 1 Mesos Master and 3 Mesos Slaves:
 
 Start Windows Explorer and go to a directory of your choice.
