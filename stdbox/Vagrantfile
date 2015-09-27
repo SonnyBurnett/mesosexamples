@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure(2) do |config|
+
+   config.vm.define :mmstr1 do |mmstr1|
+      mmstr1.vm.box = "tsbakker/mesosmaster"  
+	  mmstr1.vm.network "private_network", ip: "192.168.33.81"
+	  mmstr1.vm.provider "virtualbox" do |vb|
+	     vb.memory = 2048
+	     vb.name = "mmstr1"
+      end	  
+      mmstr1.vm.provision "shell" do |s|
+          s.path = "scripts/bootmstr.sh"
+          s.args   = ["192.168.33.81", "192.168.33.81", "1", 
+		              "192.168.33.81", 
+					  "1"]
+      end
+   end
+	    
+   config.vm.define :mslv1 do |mslv1|
+      mslv1.vm.box = "tsbakker/mesosslave"  
+	  mslv1.vm.network "private_network", ip: "192.168.33.91"
+	  mslv1.vm.provider "virtualbox" do |vb|
+	     vb.memory = 2048
+	     vb.name = "mslv1"
+      end
+      mslv1.vm.provision "shell" do |s|
+          s.path = "scripts/bootslv.sh"
+          s.args   = ["192.168.33.91", "192.168.33.91", 
+		              "192.168.33.81"]
+      end
+   end
+   
+end

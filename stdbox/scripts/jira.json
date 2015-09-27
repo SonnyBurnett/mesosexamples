@@ -1,0 +1,15 @@
+{
+    "id": "jira", 
+    "container": {
+      "docker": {
+        "image": "cptactionhank/atlassian-jira:latest",
+        "network": "BRIDGE",
+        "portMappings": [
+          {"containerPort": 8080, "servicePort": 8080}
+        ]
+      }
+    },
+    "cpus": 0.2,
+    "mem": 512.0,
+    "instances": 1
+}
