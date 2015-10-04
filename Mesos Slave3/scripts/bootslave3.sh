@@ -68,6 +68,7 @@ echo
 
 echo "192.168.33.53" | tee /etc/mesos-slave/ip
 cp /etc/mesos-slave/ip /etc/mesos-slave/hostname
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
 
 
 
