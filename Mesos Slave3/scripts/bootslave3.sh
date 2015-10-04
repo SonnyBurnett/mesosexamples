@@ -68,9 +68,6 @@ echo
 
 echo "192.168.33.53" | tee /etc/mesos-slave/ip
 cp /etc/mesos-slave/ip /etc/mesos-slave/hostname
-echo 'docker,mesos' > /etc/mesos-slave/containerizers
-
-
 
 echo   
 echo "**********************************************************************"
@@ -90,15 +87,16 @@ docker -v
 # docker-compose --version
 # docker-compose --version
 
-echo   
+echo
 echo "**********************************************************************"
 echo "*                                                                    *"
-echo "* Start mesos-slave                                                  *"  
-echo "*                                                                    *"  
-echo "**********************************************************************" 
+echo "* Configure & start mesos-slave                                      *"
+echo "*                                                                    *"
+echo "**********************************************************************"
 echo
-
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
 start mesos-slave
+
 
 ifconfig
 exit 0
