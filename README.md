@@ -72,6 +72,10 @@ This will download a standard Jenkins container from Docker Hub.
 
 $ sudo cd /vagrant/scripts
 
+Make "startmesos.sh" script executable
+
+$ sudo chmod +x startmesos.sh
+
 You might want to copy the json and bash script files to an other directory
 
 $ ./startmesos.sh jenkins
