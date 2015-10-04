@@ -91,10 +91,9 @@ apt-get install -y curl
 curl -sSL https://get.docker.com/ | sh
 usermod -aG docker ubuntu
 docker -v
-apt-get install -y python-pip
-pip install -U docker-compose
-docker-compose --version
-docker-compose --version
+#apt-get install -y python-pip
+#pip install -U docker-compose
+#docker-compose --version
 
 echo
 echo "**********************************************************************"
