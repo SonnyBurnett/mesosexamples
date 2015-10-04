@@ -97,16 +97,6 @@ cp /etc/mesos-slave/ip /etc/mesos-slave/hostname
 echo   
 echo "**********************************************************************"
 echo "*                                                                    *"
-echo "* Start mesos-slave                                                  *"  
-echo "*                                                                    *"  
-echo "**********************************************************************" 
-echo
-
-start mesos-slave
-
-echo   
-echo "**********************************************************************"
-echo "*                                                                    *"
 echo "* Install & configure docker                                         *"  
 echo "*                                                                    *"  
 echo "**********************************************************************" 
@@ -123,6 +113,15 @@ apt-get install -y python-pip
 pip install -U docker-compose
 docker-compose --version
 
+echo
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Configure & start mesos-slave                                      *"
+echo "*                                                                    *"
+echo "**********************************************************************"
+echo
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
+start mesos-slave
 
 ifconfig
 exit 0
