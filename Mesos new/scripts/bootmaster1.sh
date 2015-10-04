@@ -29,9 +29,10 @@ echo "*                                                                    *"
 echo "**********************************************************************" 
 echo
 
+add-apt-repository -y ppa:openjdk-r/ppa
 apt-get -y update
 apt-get install -y vim
-apt-get install -y mesosphere 
+apt-get install -y mesosphere
 
 echo   
 echo "**********************************************************************"
