@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-echo   
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Set hostname                                                       *"
+echo "*                                                                    *"
+echo "**********************************************************************"
+
+echo "mesos-slave3" | sudo tee /etc/hostname
+sudo hostname mesos-slave03
+
+echo
 echo "**********************************************************************"
 echo "*                                                                    *"
 echo "* Add the Mesosphere Repositories to your Hosts                      *"  
