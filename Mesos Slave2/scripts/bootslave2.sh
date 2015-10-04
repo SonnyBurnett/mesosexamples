@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Set hostname                                                       *"
+echo "*                                                                    *"
+echo "**********************************************************************"
+
+echo "mesos-slave2" | sudo tee /etc/hostname
+sudo hostname mesos-slave02
+
 echo   
 echo "**********************************************************************"
 echo "*                                                                    *"
@@ -72,16 +81,6 @@ cp /etc/mesos-slave/ip /etc/mesos-slave/hostname
 echo   
 echo "**********************************************************************"
 echo "*                                                                    *"
-echo "* Start mesos-slave                                                  *"  
-echo "*                                                                    *"  
-echo "**********************************************************************" 
-echo
-
-start mesos-slave
-
-echo   
-echo "**********************************************************************"
-echo "*                                                                    *"
 echo "* Install & configure docker                                         *"  
 echo "*                                                                    *"  
 echo "**********************************************************************" 
@@ -92,11 +91,19 @@ apt-get install -y curl
 curl -sSL https://get.docker.com/ | sh
 usermod -aG docker ubuntu
 docker -v
-apt-get install -y python-pip
-pip install -U docker-compose
-docker-compose --version
-docker-compose --version
+#apt-get install -y python-pip
+#pip install -U docker-compose
+#docker-compose --version
 
+echo
+echo "**********************************************************************"
+echo "*                                                                    *"
+echo "* Configure & start mesos-slave                                      *"
+echo "*                                                                    *"
+echo "**********************************************************************"
+echo
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
+start mesos-slave
 
 ifconfig
 exit 0
